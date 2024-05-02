@@ -1,8 +1,10 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-key */
-import { useGetItemByIdQuery } from "../../redux/services/api";
 import { useState } from "react";
+import { useGetItemByIdQuery } from "../../redux/services/api";
+import styles from './styles.module.scss';
 
-export const CommentsItem = ({id}) => {
+export const CommentsItem = ({id, onClick}) => {
     const { data: comment } = useGetItemByIdQuery(id);
     const [isOpen, setIsOpen] = useState(false);
 
@@ -12,17 +14,21 @@ export const CommentsItem = ({id}) => {
     
     function getComm(com) {
         return (
-            <ul>
-                <li>By: {com.by}</li>
-                <li>Text: {com.text}</li>
-                {com.kids && com.kids.map((num) => {
-                    return (
-                        <>
-                            {com.kids && <button onClick={() => setIsOpen(!isOpen)}>Replies</button>}
-                            {isOpen && <CommentsItem id={num}/>}
-                        </>
-                    );
-                })}
+            <ul className={styles.comItem}>
+                {(com.by && com.text) ? 
+                    <>
+                        <li>By: {com.by}</li>
+                        <li>Text: {com.text}</li>
+                        {com.kids && com.kids.map((num) => {
+                            return (
+                                <>
+                                    {isOpen && <CommentsItem onClick={() => setIsOpen(!isOpen)} id={num}/>}
+                                </>
+                            );
+                        })}
+                    </> :
+                    <>Comment deleted!</>
+                }
             </ul>
         )
     }

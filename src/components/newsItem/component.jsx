@@ -1,17 +1,13 @@
 /* eslint-disable react/prop-types */
-export const NewsItem = ({ story }) => {
-    if(!story) {
-        return;
-    }
+// import styles from './styles.module.scss';
 
-    const date = new Date(story.time * 1000);
-
+export const NewsItem = ({ story, year, month, day, hour, minute }) => {
     return (
         <div>
-            <div>title: {story.title}</div>
-            <div>score: {story.score}</div>
-            <div>nickname: {story.by}</div>
-            <div>time: {date.toString()}</div>
+            <div>Title: {story.title}</div>
+            <div>Score: {story.score}</div>
+            <div>Nickname: {story.by}</div>
+            <div>Publish date: {`${day}/${month}/${year} ${hour}:${minute}`}</div>
         </div>
     )
 }

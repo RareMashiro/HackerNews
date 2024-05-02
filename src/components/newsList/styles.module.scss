@@ -1,0 +1,27 @@
+.loader {
+    text-align: center;
+    font-size: 4rem;
+}
+
+.newsList {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.newsList > * + * {
+    margin-top: 0.75em;
+}
+
+.newsItem {
+    border: 0.075em solid white;
+    border-radius: 0.3em;
+    padding: 0.5em 1em;
+    background-color: transparent;
+    transition: font-size 0.1s;
+}
+
+.newsItem:hover {
+    font-size: 1.05em;
+}
